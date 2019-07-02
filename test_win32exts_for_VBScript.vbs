@@ -31,7 +31,7 @@ strCurDll = win32exts.read_wstring(g_buf, 0, -1)
 Call win32exts.MessageBoxW(0, win32exts.L(strCurDll), null, 1)
 
 '
-' sample: call GetWindowTextW API
+' sample: call EnumWindows & GetWindowTextW API
 '
 iCount = 0
 
