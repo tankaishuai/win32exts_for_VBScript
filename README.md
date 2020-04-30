@@ -52,6 +52,9 @@
 
 ### win32exts调用的基本用法如下：
 
+
+
+
 （1）常规具名函数（以MessageBoxA/W为例）调用：
 
 导入模块符号。第一个参数为待加载的模块名，可以带路径，传入"*"表示当前进程的所有模块；
@@ -66,11 +69,16 @@ win32exts.load_sym("\*", "\*")
 
 或 win32exts.load_sym("user32", "\*")
 
+
+然后：
+
 win32exts.MessageBoxA(0, "call MessageBoxA", "", 1)
 
 宽字符需要用 win32exts.L() 包装，与C/C++雷同。
 
 win32exts.MessageBoxW(0, win32exts.L("call MessageBoxW"), None, 1)
+
+
 
 
 （2）带回调的函数（以EnumWindows为例）调用：
@@ -109,9 +117,16 @@ win32exts.MessageBoxW(0, win32exts.L("call MessageBoxW"), None, 1)
 
 win32exts.callback（）用于包装一个Python回调函数。
 
+对于 vb/vbs，使用：
+
+	win32exts.EnumWindows(GetRef("EnumWndProc"), 0)
+
 对于js/lua 等等语言来说，没有提供该函数，直接传入即可，亦即：
 
 	win32exts.EnumWindows(EnumWndProc, 0)
+	
+	
+	
 
 （3）匿名（非具名）函数调用：
 
@@ -135,6 +150,8 @@ win32exts.callback（）用于包装一个Python回调函数。
 	win32exts.push_value(0)
 	
 	iRetVal = win32exts.sym_call("MessageBoxA")  【或用 func_call】
+
+
 
 
 
